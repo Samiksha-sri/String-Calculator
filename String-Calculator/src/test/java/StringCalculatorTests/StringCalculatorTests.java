@@ -30,14 +30,7 @@ public class StringCalculatorTests {
 
     @Test
     public void moreThanTwoNumbers(){
-       try{
-           assertEquals("More than 2 numbers not allowed.", sc.add("1,2,3"));
-           Assert.fail("Should have thrown an exception");
-       }
-       catch (Exception e){
-           String expectedMessage = "More than 2 numbers not allowed.";
-           assertEquals(expectedMessage, e.getMessage());
-       }
+       assertEquals(6, sc.add("1,2,3"));
     }
 
 
