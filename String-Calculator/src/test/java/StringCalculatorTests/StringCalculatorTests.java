@@ -50,6 +50,11 @@ public class StringCalculatorTests {
         }
     }
 
+    @Test
+    public void handleCustomDelimiters(){
+        assertEquals(3, sc.add("//;\n1;2"));
+    }
+
 
     @Test
     @AfterMethod

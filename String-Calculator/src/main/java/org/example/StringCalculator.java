@@ -1,21 +1,14 @@
 package org.example;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringCalculator {
 
 
     public static int add(String numbers){
-
-        if(numbers.length() == 0)
-            return 0;
-
-        String delimiter = ",";
-
-        if(numbers.matches("//(.*)\n(.*)")){
-            delimiter = Character.toString(numbers.charAt(2));
-            numbers = numbers.substring(4);
-        }
-
-        String [] numberEntries = numbers.split(delimiter + "|\n");
+        
+        String [] numberEntries = splitDigits(numbers);
 
         int answer = sum(numberEntries);
 
@@ -39,4 +32,34 @@ public class StringCalculator {
         return result;
 
     }
+
+    public static String[] splitWithCommaAndNewLine(String numbers){
+        String [] digits = numbers.split(",|\n");
+        return digits;
+    }
+
+    public static boolean hasCustomDelimiter(String numbers){
+        return numbers.startsWith("//");
+    }
+
+    public static String[] splitWithCustomDelimiter(String numbers){
+        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(numbers);
+        m.matches();
+        String customDelimiter = m.group(1);
+        String digits = m.group(2);
+        return digits.split(Pattern.quote(customDelimiter));
+    }
+
+    public static String[] splitDigits(String numbers){
+        if(numbers.isEmpty()){
+            return new String[0];
+        }
+        else if(hasCustomDelimiter(numbers)){
+            return splitWithCustomDelimiter(numbers);
+        }
+
+        return splitWithCommaAndNewLine(numbers);
+
+    }
+
 }
