@@ -21,6 +21,7 @@ public class StringCalculator {
 
         for(String entry : numbers){
             result += Integer.parseInt(entry);
+
         }
 
         return result;
