@@ -17,13 +17,17 @@ public class StringCalculator {
 
     public static int sum(String[] numbers){
 
-        int result = 0;
-
-        for(String entry : numbers){
-            result += Integer.parseInt(entry);
-
+        if(numbers.length > 2){
+            throw new RuntimeException("More than 2 numbers not allowed.");
         }
 
+        int result = 0;
+
+        for(String number : numbers){
+            result += Integer.parseInt(number);
+        }
+        
         return result;
+
     }
 }
