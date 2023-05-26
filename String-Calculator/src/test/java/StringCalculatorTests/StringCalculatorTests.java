@@ -33,6 +33,23 @@ public class StringCalculatorTests {
        assertEquals(6, sc.add("1,2,3"));
     }
 
+    @Test
+    public void handleNewLines(){
+        assertEquals(10, sc.add("1\n2\n3,4"));
+    }
+
+    @Test
+    public void handleNonNumber(){
+        try{
+            assertEquals("Digit not found.", sc.add("1,X"));
+            Assert.fail("Should throw an exception");
+        }
+        catch (Exception e){
+            String expectedMessage = "Digit not found.";
+            assertEquals(expectedMessage, e.getMessage());
+        }
+    }
+
 
     @Test
     @AfterMethod

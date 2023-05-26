@@ -8,7 +8,14 @@ public class StringCalculator {
         if(numbers.length() == 0)
             return 0;
 
-        String [] numberEntries = numbers.split(",");
+        String delimiter = ",";
+
+        if(numbers.matches("//(.*)\n(.*)")){
+            delimiter = Character.toString(numbers.charAt(2));
+            numbers = numbers.substring(4);
+        }
+
+        String [] numberEntries = numbers.split(delimiter + "|\n");
 
         int answer = sum(numberEntries);
 
@@ -20,7 +27,13 @@ public class StringCalculator {
         int result = 0;
 
         for(String number : numbers){
-            result += Integer.parseInt(number);
+
+            try {
+                result += Integer.parseInt(number);
+            }
+            catch (NumberFormatException e){
+                throw new RuntimeException("Digit not found.");
+            }
         }
         
         return result;
