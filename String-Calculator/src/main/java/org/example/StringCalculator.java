@@ -40,11 +40,8 @@ public class StringCalculator {
                 }
                 else{
 
-                    if(num > 1000){
-                        result += 0;
-                    }
-                    else{
-                        result += num;
+                    if(num <= 1000){
+                         result += num;
                     }
 
                 }
