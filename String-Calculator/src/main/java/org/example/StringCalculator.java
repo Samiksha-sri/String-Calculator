@@ -27,24 +27,33 @@ public class StringCalculator {
 
             try{
                 num = Integer.parseInt(number);
+
+                if(num < 0){
+
+                    if(negatives == ""){
+                        negatives = number;
+                    }
+                    else{
+                        negatives += ("," +  number);
+                    }
+
+                }
+                else{
+
+                    if(num > 1000){
+                        result += 0;
+                    }
+                    else{
+                        result += num;
+                    }
+
+                }
             }
             catch (NumberFormatException e){
                 throw new RuntimeException("Digit not found.");
             }
 
-            if(num < 0){
 
-                if(negatives == ""){
-                    negatives = number;
-                }
-                else{
-                    negatives += ("," +  number);
-                }
-
-            }
-            else{
-                result += num;
-            }
 
         }
 
