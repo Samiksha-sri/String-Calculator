@@ -7,7 +7,7 @@ public class StringCalculator {
 
 
     public static int add(String numbers){
-        
+
         String [] numberEntries = splitDigits(numbers);
 
         int answer = sum(numberEntries);
@@ -19,14 +19,37 @@ public class StringCalculator {
 
         int result = 0;
 
+        String negatives = "";
+
         for(String number : numbers){
 
-            try {
-                result += Integer.parseInt(number);
+            int num = 0;
+
+            try{
+                num = Integer.parseInt(number);
             }
             catch (NumberFormatException e){
                 throw new RuntimeException("Digit not found.");
             }
+
+            if(num < 0){
+
+                if(negatives == ""){
+                    negatives = number;
+                }
+                else{
+                    negatives += ("," +  number);
+                }
+
+            }
+            else{
+                result += num;
+            }
+
+        }
+
+        if(negatives.length() > 0){
+            throw new IllegalArgumentException("negatives not allowed: " + negatives);
         }
         
         return result;

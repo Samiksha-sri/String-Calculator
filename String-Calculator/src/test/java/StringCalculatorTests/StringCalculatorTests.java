@@ -55,6 +55,18 @@ public class StringCalculatorTests {
         assertEquals(3, sc.add("//;\n1;2"));
     }
 
+    @Test
+    public void negativeNumbers(){
+        try{
+            assertEquals("negatives not allowed: -1,-2", sc.add("-1,-2,3"));
+            Assert.fail("Should throw an exception");
+        }
+        catch (Exception e){
+            String expectedMessage = "negatives not allowed: -1,-2";
+            assertEquals(expectedMessage, e.getMessage());
+        }
+    }
+
 
     @Test
     @AfterMethod
