@@ -4,9 +4,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-
-
+    
     public static int add(String numbers){
+
+        if(numbers == "")
+            return 0;
 
         String [] numberEntries = splitDigits(numbers);
 
@@ -36,22 +38,17 @@ public class StringCalculator {
                     else{
                         negatives += ("," +  number);
                     }
-
                 }
                 else{
 
                     if(num <= 1000){
                          result += num;
                     }
-
                 }
             }
             catch (NumberFormatException e){
                 throw new RuntimeException("Digit not found.");
             }
-
-
-
         }
 
         if(negatives.length() > 0){
@@ -63,6 +60,7 @@ public class StringCalculator {
     }
 
     public static String[] splitWithCommaAndNewLine(String numbers){
+
         String [] digits = numbers.split(",|\n");
         return digits;
     }
@@ -72,11 +70,12 @@ public class StringCalculator {
     }
 
     public static String[] splitWithCustomDelimiter(String numbers){
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(numbers);
+       Matcher m = Pattern.compile("//(.)\n(.*)").matcher(numbers);
         m.matches();
         String customDelimiter = m.group(1);
         String digits = m.group(2);
         return digits.split(Pattern.quote(customDelimiter));
+
     }
 
     public static String[] splitDigits(String numbers){

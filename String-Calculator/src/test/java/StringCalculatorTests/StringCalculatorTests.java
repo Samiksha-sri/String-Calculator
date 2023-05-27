@@ -4,10 +4,7 @@ import org.example.StringCalculator;
 import org.junit.Test;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-
 import static org.junit.Assert.*;
-
 
 public class StringCalculatorTests {
 
@@ -71,7 +68,6 @@ public class StringCalculatorTests {
     public void ignoreNumbersBiggerThan1000(){
         assertEquals(2,sc.add("1002,2"));
     }
-
 
     @Test
     @AfterMethod
